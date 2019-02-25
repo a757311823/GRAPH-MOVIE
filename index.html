@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>图解电影APP官方网站——十分钟品味一部好电影</title>
+	<link rel="icon" href="http://www.graphmovies.com/home/2/favicon.ico" type="image/x-icon">
+	<script src="js/ajax.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock.js"></script>
+	<script src="js/1.8.3.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		a {
+			cursor: pointer;
+		}
+
+		body {
+			background-color: #f2f2f2;
+		}
+
+		/* 头部及导航部分 */
+		header {
+			min-width: 1024px;
+			background-color: #202028;
+			margin: 0 auto;
+		}
+
+		.header_content {
+			position: relative;
+			width: 1024px;
+			height: 60px;
+			line-height: 60px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.nav {
+			display: inline-block;
+			height: 60px;
+			line-height: 60px;
+			vertical-align: top;
+		}
+
+		.nav>li {
+			display: inline-block;
+			margin: 0 30px;
+		}
+
+		.nav>li>a {
+			text-decoration: none;
+			color: white;
+		}
+
+		.nav>li:nth-child(1)>a,
+		.nav>li>a:hover {
+			color: #00b9ff;
+		}
+
+		.header_right {
+			padding: 5px;
+			vertical-align: top;
+		}
+
+		.input_serach {
+			display: inline-block;
+			height: 30px;
+			vertical-align: text-bottom;
+			font-size: 16px;
+			background-color: #202028;
+			border: 1px solid #202028;
+			margin-right: 140px;
+		}
+
+		.writting {
+			position: absolute;
+			display: inline-block;
+			width: 130px;
+			height: 70px;
+			line-height: 70px;
+			background-color: #00b9ff;
+			top: 0;
+			right: 0;
+			box-shadow: 0px 0px 10px #666;
+			;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+			text-decoration: none;
+			color: white;
+			text-align: center;
+		}
+
+		.writting:hover {
+			background-color: #0099ff;
+		}
+
+		/* 大背景 */
+		.big_bg {
+			display: block;
+			height: 550px;
+			background: url(img/index_bg.jpg) top center no-repeat;
+		}
+
+		/* 整体部分 */
+		.content {
+			position: relative;
+			top: -75px;
+			width: 1024px;
+			margin: 0 auto;
+			border-radius: 10px;
+			text-align: center;
+			background: linear-gradient(white, #f2f2f2 400px);
+		}
+
+		.content_nav {
+			display: inline-block;
+			width: 984px;
+			height: 94px;
+			line-height: 94px;
+			border-bottom: 1px solid #edecec;
+		}
+
+		.content_nav>li {
+			display: inline-block;
+			width: 150px;
+			cursor: pointer;
+			font-size: 24px;
+		}
+
+		.content_nav>li:hover,
+		.content_nav>li:nth-child(1) {
+			color: #00b9ff;
+		}
+
+		#movie_selected,
+		#tv_selected,
+		#location_selected {
+			width: 984px;
+			margin: 0 auto;
+			text-align: left;
+		}
+
+		/* 标题 */
+		/* .content>div>div>p {
+				display: block;
+				padding: 20px 0;
+				color: #707070;
+			} */
+
+		/* 子项内容样式 */
+		.content>div>div>div,
+		#page_movie {
+			display: flex;
+			width: 984px;
+			/* height: 815px; */
+			flex-wrap: wrap;
+			align-content: space-between;
+			justify-content: space-between;
+
+		}
+
+		#tv_box>div,
+		#page_movie>div,
+		#movie_box>div {
+			display: inline-block;
+			width: 300px;
+			height: 380px;
+			margin: 7px 0;
+			padding: 10px;
+			box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1), 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+		}
+
+		#tv_box>div>div,
+		#page_movie>div>div,
+		#movie_box>div>div {
+			width: 295px;
+			height: 60px;
+			line-height: 60px;
+		}
+
+		#movie_box>div>div>img,
+		#page_movie>div>div>img,
+		#tv_box>div>div>img {
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			margin: 0 10px;
+			vertical-align: middle;
+			border-radius: 50%;
+		}
+
+		#tv_box>div>span,
+		#page_movie>div>span,
+		#movie_box>div>span {
+			display: inline-block;
+		}
+
+		#movie_box>div>img,
+		#page_movie>div>img,
+		#tv_box>div>img {
+			display: inline-block;
+			width: 295px;
+			height: 200px;
+			/* border: 1px solid; */
+		}
+
+		#movie_box>div>h3,
+		#page_movie>div>h3,
+		#tv_box>div>h3 {
+			text-align: left;
+			margin: 10px 0;
+		}
+
+		#movie_box>div>p,
+		#page_movie>div>p,
+		#tv_box>div>p {
+			display: block;
+			color: #707070;
+			text-align: left;
+			padding: 1px 0;
+			font-size: 14px;
+		}
+
+		#movie_box>div>span,
+		#page_movie>div>span,
+		#tv_box>div>span {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 10px;
+			font-size: 12px;
+		}
+
+		#movie_box>div>span>div,
+		#page_movie>div>span>div,
+		#tv_box>div>span>div {
+			width: 57px;
+			padding-left: 33px;
+		}
+
+		#movie_box>div>span>div:nth-child(1),
+		#page_movie>div>span>div:nth-child(1),
+		#tv_box>div>span>div:nth-child(1) {
+			background: url(img/eye.png) left center no-repeat;
+			background-size: 22px;
+		}
+
+		#movie_box>div>span>div:nth-child(2),
+		#page_movie>div>span>div:nth-child(2),
+		#tv_box>div>span>div:nth-child(2) {
+			background: url(img/like.png) left center no-repeat;
+			background-size: 18px;
+		}
+
+		#movie_box>div>span>div:nth-child(3),
+		#page_movie>div>span>div:nth-child(3),
+		#tv_box>div>span>div:nth-child(3) {
+			background: url(img/dou.png) left center no-repeat;
+			background-size: 24px;
+		}
+
+		/* 更多按钮 */
+		.view_more {
+			display: block;
+			width: 150px;
+			height: 50px;
+			margin: 40px auto 0;
+			color: #aaa;
+			border-radius: 50px;
+			line-height: 50px;
+			text-align: center;
+			background: white;
+			box-shadow: 0 1px 3px 1px #ccc;
+			cursor: pointer;
+		}
+
+		.view_more:hover {
+			background: #ebebeb;
+		}
+
+		/* 片场精选样式 */
+		#location_box {
+			display: block;
+		}
+
+		#location_box>div {
+			width: 944px;
+			height: 142px;
+			padding: 20px;
+			margin-bottom: 30px;
+			background: white;
+			box-shadow: 0 1px 3px 1px #ccc;
+		}
+
+		#location_box>div>i {
+			display: inline-block;
+			background: top left no-repeat;
+			background-size: 200px;
+			width: 200px;
+			height: 140px;
+			vertical-align: top;
+			margin-right: 10px;
+			/* border: 1px solid; */
+		}
+
+		#location_box>div>div {
+			display: inline-block;
+			padding: 0;
+			border: none;
+			width: 728px;
+			height: 142px;
+			font-size: 14px;
+			box-shadow: none;
+		}
+
+		#location_box>div>div>span {
+			display: flex;
+			width: 732px;
+			height: 20px;
+			justify-content: space-between;
+		}
+
+		#location_box>div>div>span>span:nth-child(1) {
+			color: #acacac;
+			cursor: pointer;
+		}
+
+		#location_box>div>div>span>span:nth-child(2) {
+			color: #707070;
+		}
+
+		#location_box>div>div>h3 {
+			/* display: flex; */
+			margin: 10px 0;
+			font-size: 18px;
+		}
+
+		#location_box>div>div>p {
+			color: #707070;
+			margin-bottom: 10px;
+		}
+
+		#location_box>div>div>div {
+			display: flex;
+			width: 732px;
+			height: 55px;
+			border: none;
+			justify-content: space-between;
+		}
+
+		#location_box>div>div>div>span {
+			display: flex;
+			width: 300px;
+			height: 20px;
+			justify-content: space-between;
+		}
+
+		#location_box>div>div>div>div>div {
+			display: inline-block;
+			height: 55px;
+			vertical-align: middle;
+		}
+
+		#location_box>div>div>div>div>i {
+			display: inline-block;
+			width: 35px;
+			height: 35px;
+			margin: 0 10px;
+			vertical-align: middle;
+			background-size: 100%;
+			/* border: 1px solid; */
+			border-radius: 50%;
+		}
+
+		#location_box>div>div>div>span>div {
+			width: 50px;
+			height: 21px;
+			color: #707070;
+		}
+
+		#location_box>div>div>div>span>div:nth-child(1) {
+			background: url(img/eye.png) left center no-repeat;
+			background-size: 25px;
+			padding-left: 30px;
+		}
+
+		#location_box>div>div>div>span>div:nth-child(2) {
+			background: url(img/like.png) left center no-repeat;
+			background-size: 17px;
+			padding-left: 22px;
+		}
+
+		#location_box>div>div>div>span>div:nth-child(3) {
+			background: url(img/talk.png) left center no-repeat;
+			background-size: 20px;
+			padding-left: 25px;
+		}
+
+		/* 底部 */
+		footer {
+			border-top: 1px solid #e8e8e8;
+			border-bottom: 1px solid #e8e8e8;
+			padding: 40px 0;
+		}
+
+		.footer_content {
+			width: 1024px;
+			background: transparent;
+			margin: 0 auto;
+			color: #979797;
+		}
+
+		.footer_content>p {
+			display: inline-block;
+			width: 500px;
+		}
+
+		.footer_content>ul {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.footer_content>ul>li {
+			display: inline-block;
+			margin: 0 20px;
+			cursor: pointer;
+		}
+
+		.footer_content>ul>li:hover {
+			color: #00b9ff;
+		}
+
+		/* 固定栏 */
+		#guide {
+			position: fixed;
+			right: 20px;
+			bottom: 180px;
+			width: 60px;
+			height: 60px;
+			background: url(img/mod-guide.png) top no-repeat;
+			border-radius: 5px;
+			overflow: hidden;
+		}
+
+		#guide>span {
+			display: inline-block;
+			width: 60px;
+			height: 60px;
+			line-height: 60px;
+			background: #00B9FF;
+			text-align: center;
+			border-radius: 5px;
+			color: white;
+			font-size: 12px;
+			cursor: pointer;
+			transform-origin: -30px 30px;
+			transform: rotateZ(90deg);
+			transition: .4s;
+		}
+
+		#guide:hover>span {
+			transform: rotateZ(0deg);
+			transform-origin: -30px 30px;
+		}
+
+		#guide:hover+div {
+			display: block;
+		}
+
+		#qr {
+			position: fixed;
+			width: 140px;
+			height: 140px;
+			right: 90px;
+			background: #CCCCCC;
+			bottom: 80px;
+			box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1), 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+			padding: 10px;
+			display: none;
+		}
+
+		#qr>img {
+			width: 140px;
+		}
+
+		/* 电影自页面 */
+		#page_movie {
+			display: none;
+		}
+
+		#page_album {
+			display: none;
+			width: 980px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 头部 -->
+	<header>
+		<div class="header_content">
+			<div class="header_left">
+				<a href="index.html" id="logo"><img src="img/logo.png"></a>
+				<ul class="nav">
+					<li><a href="index.html">首页</a></li>
+					<li><a href="">图解制作器</a></li>
+					<li><a href="cellphone.html">手机客户端</a></li>
+				</ul>
+			</div>
+			<div class="header_right">
+				<img src="img/search-sm.png" width="30">
+				<input type="text" class="input_serach" placeholder="搜索图解">
+				<a href="" class="writting">戳我投稿</a>
+			</div>
+		</div>
+	</header>
+	<!-- 大背景 -->
+	<i class="big_bg"></i>
+	<!-- 整体部分 -->
+	<div class="content">
+		<ul class="content_nav">
+			<li data-id="selected">精选</li>
+			<li data-id="movie">电影</li>
+			<li>剧集</li>
+			<li data-id="ablum">专辑</li>
+			<li>片场</li>
+		</ul>
+		<div id="main_selected">
+			<div id="movie_selected">
+				<p>电影精选</p>
+				<div id="movie_box">
+				</div>
+				<span class="view_more" data-id="电影">查看更多>></span>
+			</div>
+			<div id="tv_selected">
+				<p>剧集精选</p>
+				<div id="tv_box">
+				</div>
+				<span class="view_more">查看更多>></span>
+			</div>
+			<div id="location_selected">
+				<p>片场精选</p>
+				<div id="location_box">
+				</div>
+				<span class="view_more">查看更多>></span>
+			</div>
+		</div>
+		<div id="page_movie">
+
+		</div>
+		<div id="page_album">
+
+		</div>
+	</div>
+
+	<div id="guide">
+		<span>二维码</span>
+	</div>
+	<div id="qr">
+		<img src="img/qrcode.png">
+	</div>
+	<footer>
+		<div class="footer_content">
+			<p>Copyright graphmovie.com <a href="">© 粤ICP备14098731号-1</a> 本平台图解作品仅为介绍、评论影视作品之用，未经授权不得转载。<a
+					href="">(免责申明)</a></p>
+			<ul>
+				<li>关于我们</li>
+				<li>联系我们</li>
+				<li>加入我们</li>
+				<li>常见问题</li>
+			</ul>
+			<i style="background-image: url(img/dou.png);"></i>
+		</div>
+	</footer>
+	<!-- 精选页面json数据加载 -->
+	<script type="text/javascript">
+		var omovie = document.getElementById("movie_selected");
+		var omb = document.getElementById("movie_box");
+		var otv = document.getElementById("tv_selected");
+		var ot = document.getElementById("tv_box");
+		var olocation = document.getElementById("location_selected");
+		var ol = document.getElementById("location_box");
+		ajax("get", "json/selected.json", "", function (data) {
+			// console.log(data);
+			var json = JSON.parse(data);
+			// console.log(json.movie);
+			var json_movie = json.movie;
+			var json_tv = json.tv;
+			var json_location = json.location;
+			for (i in json_movie) {
+				// console.log(json_movie[i].author_img)
+				omb.innerHTML +=
+					`<div data-id=${i}>
+					<div data-id=${i}><img src="${json_movie[i].author_img}"><span>${json_movie[i].author_name}<\/span><\/div>
+					<img src="${json_movie[i].img}"  data-id=${i}>
+					<h3>${json_movie[i].name}<\/h3>
+					<p>${json_movie[i].word}<\/p>
+					<span>
+						<div>${json_movie[i].view}万<\/div>
+						<div>${json_movie[i].like}<\/div>
+						<div>${json_movie[i].rank}分<\/div>
+					<\/span>
+					<\/div>`
+			}
+			for (i in json_tv) {
+				// console.log(json_tv[i].author_img)
+				ot.innerHTML +=
+					`<div>
+					<div><img src="${json_tv[i].author_img}"><span>${json_tv[i].author_name}<\/span><\/div>
+					<img src="${json_tv[i].img}">
+					<h3>${json_tv[i].name}<\/h3>
+					<p>${json_tv[i].word}<\/p>
+					<span>
+						<div>${json_tv[i].view}万<\/div>
+						<div>${json_tv[i].like}<\/div>
+						<div>${json_tv[i].rank}分<\/div>
+					<\/span>
+					<\/div>`
+			}
+			for (i in json_location) {
+				// console.log(json_location[i].author_img)
+				ol.innerHTML +=
+					`<div><i style="background-image: url(${json_location[i].img});"><\/i>
+					<div>
+					<span><span>${json_location[i].press}<\/span><span>${json_location[i].time}<\/span><\/span>
+					<h3>${json_location[i].name}<\/h3>
+					<p>${json_location[i].word}<\/p>
+					<div>
+					<div><i style="background-image: url(${json_location[i].author_img});"><\/i><span>${json_location[i].author_name}<\/span><\/div>
+					<span><div>${json_location[i].view}万<\/div><div>${json_location[i].like}<\/div><div>${json_location[i].rank}<\/div><\/span>
+					<\/div>
+					<\/div>
+					<\/div>`
+			}
+
+		})
+	</script>
+	<!-- 伪数据创建 -->
+	<script>
+		var Random = Mock.Random;
+		var data_movie = Mock.mock({
+			'movie|33': [{
+				"author_img": Random.image('40x40', Random.color()),
+				"author_name|11000-11999": 11123,
+				"img": Random.image('295x200', Mock.mock('@color'), Mock.mock('@color'), '@cname'),
+				"name": '@cword(3, 5)',
+				"word": '@ctitle',
+				"view|0-10": 5.8,
+				"like|100-999": 482,
+				"rank|0-10.0": 8.6
+			}]
+
+		})
+		// console.log(JSON.stringify(data_movie, null, 4))
+		json_page_movie = JSON.parse(JSON.stringify(data_movie, null, 4));
+			// console.log(json_page_movie)
+	</script>
+	<!-- 页面跳转 -->
+	<script type="text/javascript">
+		var arrnav = document.getElementsByClassName("content_nav")[0].getElementsByTagName("li");
+		var omain = document.getElementById("main_selected");
+		var arrdiv = document.getElementById("main_selected").getElementsByTagName("div");
+		var op_movie = document.getElementById("page_movie");
+		var op_album = document.getElementById("page_album");
+		// console.log(arrnav.length);
+		for (i = 0; i < arrnav.length; i++) {
+			arrnav[i].index = i;
+			arrnav[i].onclick = function () {
+				// console.log(arrnav[this.index].getAttribute("data-id"));
+				if (arrnav[this.index].getAttribute("data-id") == "selected") {
+					for (j = 0; j < arrnav.length; j++) {
+						arrnav[j].style.color = "black"
+					}
+					arrnav[this.index].style.color = "#00b9ff"
+					omain.style.display = "block";
+					op_movie.style.display = "none";
+					op_album.style.display = "none";
+				}
+				if (arrnav[this.index].getAttribute("data-id") == "movie") {
+					for (j = 0; j < arrnav.length; j++) {
+						arrnav[j].style.color = "black"
+					}
+					arrnav[this.index].style.color = "#00b9ff"
+					omain.style.display = "none";
+					op_movie.style.display = "flex";
+					op_album.style.display = "none";
+					for (y in json_page_movie) {
+						for (z in json_page_movie[y]) {
+							// console.log(json_page_movie[y][z].author_img)
+							op_movie.innerHTML +=
+								`<div>
+									<div><img src="${json_page_movie[y][z].author_img}"><span>${json_page_movie[y][z].author_name}<\/span><\/div>
+									<img src="${json_page_movie[y][z].img}">
+									<h3>${json_page_movie[y][z].name}<\/h3>
+									<p>${json_page_movie[y][z].word}<\/p>
+									<span>
+										<div>${json_page_movie[y][z].view}万<\/div>
+										<div>${json_page_movie[y][z].like}<\/div>
+										<div>${json_page_movie[y][z].rank}分<\/div>
+									<\/span>
+									<\/div>
+								`
+						}
+					}
+					json_page_movie = null; //初始加载只加载一次
+
+					// < !--懒加载 -->
+					window.onscroll = function () {
+						//滚动条在Y轴上的滚动距离
+						function getScrollTop() {
+							var scrollTop = 0,
+								bodyScrollTop = 0,
+								documentScrollTop = 0;
+							if (document.body) {
+								bodyScrollTop = document.body.scrollTop;
+							}
+							if (document.documentElement) {
+								documentScrollTop = document.documentElement.scrollTop;
+							}
+							scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+							return scrollTop;
+						}
+						//文档的总高度
+						function getScrollHeight() {
+							var scrollHeight = 0,
+								bodyScrollHeight = 0,
+								documentScrollHeight = 0;
+							if (document.body) {
+								bodyScrollHeight = document.body.scrollHeight;
+							}
+							if (document.documentElement) {
+								documentScrollHeight = document.documentElement.scrollHeight;
+							}
+							scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+							return scrollHeight;
+						}
+						//浏览器视口的高度
+						function getWindowHeight() {
+							var windowHeight = 0;
+							if (document.compatMode == "CSS1Compat") {
+								windowHeight = document.documentElement.clientHeight;
+							} else {
+								windowHeight = document.body.clientHeight;
+							}
+							return windowHeight;
+						}
+						if (getScrollTop() + getWindowHeight() == getScrollHeight()) {
+							var data_more = Mock.mock({
+								'movie|6': [{
+									"author_img": Random.image('40x40', Mock.mock('@color')),
+									"author_name|11000-11999": 11123,
+									"img": Random.image('295x200', Mock.mock('@color')),
+									"name": '@cword(3, 5)',
+									"word": '@ctitle',
+									"view|0-10": 5.8,
+									"like|100-999": 482,
+									"rank|0-10.0": 8.6
+								}]
+
+							})
+							console.log(JSON.stringify(data_more, null, 4))
+							json_page_more = JSON.parse(JSON.stringify(data_more, null, 4));
+							for (y in data_more) {
+								for (z in data_more[y]) {
+									// console.log(data_more[y][z].author_img)
+									op_movie.innerHTML +=
+										`<div>
+											<div><img src="${data_more[y][z].author_img}"><span>${data_more[y][z].author_name}<\/span><\/div>
+											<img src="${data_more[y][z].img}">
+											<h3>${data_more[y][z].name}<\/h3>
+											<p>${data_more[y][z].word}<\/p>
+											<span>
+												<div>${data_more[y][z].view}万<\/div>
+												<div>${data_more[y][z].like}<\/div>
+												<div>${data_more[y][z].rank}分<\/div>
+											<\/span>
+											<\/div>
+										`
+								}
+							}
+						}
+					};
+				}
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		$("#movie_box").click(function (e) {
+			var e = e || windo.event;
+			let target = e.target || e.srcElement;
+			// console.log(target.getAttribute("data-id"));
+			window.open("detail_page.html?" + target.getAttribute("data-id"));
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>图解电影制作器——图解电影APP官方网站</title>
+	<link rel="icon" href="http://web.graphmovie.com/home/favicon.ico" type="image/x-icon">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            overflow: hidden;
+        }
+		a{
+			color: white;
+			text-decoration: none;
+			padding-right: 8px;
+		}
+        body>div{
+            width: 100vw;
+            height: 100vh;
+            font: 30px "";
+            text-align: center;
+        }
+		body>div>div>div>p{
+			width: 300px;
+			font-size: 20px;
+		}
+        #first{
+			background: url("http://www.graphmovies.com/home/maker/image/editor_first_dot.png");
+		}
+		.first_nav,.first_content{
+			display: flex;
+			width: 980px;
+			margin: 0 auto;
+			padding-top: 30px;
+			justify-content: space-between;
+		}
+		.first_nav>ul{
+			display: inline-block;
+		}
+		.first_nav>ul>li{
+			display: inline-block;
+			vertical-align: text-bottom;
+			font-size: 15px;
+			border-right: 1px solid white;
+		}
+		.first_nav>ul>li:nth-child(4){
+			border: none;
+		}
+		.first_content>img{
+			margin-top: 50px;
+		}
+		.first_content>div{
+			width: 446px;
+			margin-top: 50px;
+			color: white;
+		}
+		.first_content>div>img{
+			display: inline-block;
+			margin: 0 auto;
+		}
+		.first_content>div>h3{
+			margin: 20px 0;
+		}
+		.first_content>div>h3>img{
+			vertical-align: middle;
+		}
+		.first_content>div>p{
+			font-size: 20px;
+		}
+		.first_content>div>span{
+			display: inline-block;
+			width: 200px;
+			height: 60px;
+			line-height: 60px;
+			margin-top: 27px;
+			background: #3EC3FA;
+			border-radius: 40px;
+			font-size: 20px;
+		}
+		.download{
+			display: inline-block;
+			margin-top: 10px;
+			height: 90px;
+			width: 120px;
+			vertical-align: top;
+		}
+		.download>img{
+			display: inline-block;
+		}
+		#second{
+			background: url("http://www.graphmovies.com/home/maker/image/editor_second_dot.png");
+		}
+		.second_content{
+			display: flex;
+			width: 980px;
+			margin: 0 auto;
+			justify-content: space-between;
+		}
+		.second_content_left,.third_content_right{
+			padding-top: 200px;
+			font-size: 24px;
+		}
+		.second_content_right,.third_content_left{
+			position: relative;
+		}
+		.second_content_right>img:nth-child(1){
+			position: relative;
+			z-index: 1;
+			top: 100px;
+			left: 100px;
+		}
+		.second_content_right>img:nth-child(2){
+			position: relative;
+			z-index: 2;
+			top: -280px;
+			left: -200px;
+		}
+		#third{
+			background: url("http://www.graphmovies.com/home/maker/image/editor_third_dot.png");
+		}
+		.third_content{
+			display: flex;
+			width: 980px;
+			margin: 0 auto;
+			justify-content: space-between;
+		}
+		.third_content_left{
+			position: relative;
+			margin-top: 100px;
+			width: 890px;
+		}
+		.third_content_left>img:nth-child(2){
+			position: relative;
+			top: -60px;
+			left: -90px;
+		}
+		.third_content_left>{
+			display: inline-block;
+		}
+		#fourth{
+			background: url("http://www.graphmovies.com/home/maker/image/editor_fourth_dot.png");
+		}
+		#fourth>div>div>img{
+			top:140px;
+			left: -50px;
+		}
+		#fifth{
+			background: url("http://www.graphmovies.com/home/maker/image/editor_fifth_dot.png");
+		}
+		#sixth{
+			background: url("http://www.graphmovies.com/home/maker/image/editor_sixth_dot.png");
+		}
+		#sixth>div>div>img{
+			left: -40px;
+		}
+    </style>
+</head>
+<body>
+<!--<div id="box">-->
+    <div id="first">
+		<div class="first_nav">
+			<img src="http://www.graphmovies.com/home/maker/image/editor_logo.png" width="175" height="50">
+			<ul>
+				<li><a href="index.html">图解电影首页</a></li>
+				<li><a href="">使用说明</a></li>
+				<li><a href="">图解APP下载</a></li>
+				<li><a href="">截图工具介绍</a></li>
+			</ul>
+		</div>
+		<div class="first_content">
+			<img src="http://www.graphmovies.com/home/maker/image/editor_first_screen.png" width="575" height="378" >
+			<div>
+				<img src="http://www.graphmovies.com/home/maker/image/editor_first_version.png" >
+				<h3>从<img src="http://www.graphmovies.com/home/maker/image/heart.png">出发</h3>
+				<p>你想要的，和你未曾想到的一切</p>
+				<span>立即下载</span>
+				<div class="download"><img src="http://www.graphmovies.com/home/maker/image/iphone.png" alt=""><img src="http://www.graphmovies.com/home/maker/image/android.png" alt=""></div>
+				<img src="img/qrcode.png" width="130" height="130">
+			</div>
+		</div>
+	</div>
+    <div id="second">
+		<div class="second_content">
+			<div class="second_content_left">
+				<h2>账号登录</h2>
+				<p>图解账号或APP扫码登陆</p>
+			</div>
+			<div class="second_content_right">
+				<img src="http://www.graphmovies.com/home/maker/image/editor_second_screen.png" width="602" height="441">
+				<img src="http://www.graphmovies.com/home/maker/image/editor_second_Mobile.png" >
+			</div>
+		</div>
+	</div>
+    <div id="third">
+		<div class="third_content">
+			<div class="third_content_left">
+				<img src="http://www.graphmovies.com/home/maker/image/editor_third_screen.png" >
+				<img src="http://www.graphmovies.com/home/maker/image/editor_third_material2.png" >
+			</div>
+			<div class="third_content_right">
+				<h2>一键上线</h2>
+				<p>提交图解作品72小时内快速上线</p>
+			</div>
+		</div>
+	</div>
+    <div id="fourth">
+		<div class="second_content">
+			<div class="second_content_left">
+				<h2>信息分类</h2>
+				<p>更加准确的获取作品信息和状态</p>
+			</div>
+			<div class="second_content_right">
+				<img src="http://www.graphmovies.com/home/maker/image/editor_fourth_screen.png" width="120%">
+			</div>
+		</div>
+	</div>
+    <div id="fifth">
+		<div class="third_content">
+			<div class="third_content_left">
+				<img src="http://www.graphmovies.com/home/maker/image/editor_fifth_screen.png" width="110%" >
+			</div>
+			<div class="third_content_right">
+				<h2>作品管理</h2>
+				<p>你的作品由你自主掌控</p>
+			</div>
+		</div>
+	</div>
+	<div id="sixth">
+		<div class="second_content">
+			<div class="second_content_left">
+				<h2>创作信息</h2>
+				<p>图解小伙伴的创作进度尽收眼底</p>
+			</div>
+			<div class="second_content_right">
+				<img src="http://www.graphmovies.com/home/maker/image/editor_sixth_screen.png" width="120%" >
+			</div>
+		</div>
+	</div>
+
+<!--</div>-->
+<!-- 全屏滚动 -->
+<script>
+    var div=document.getElementsByTagName('div');
+    if(window.addEventListener){
+        // 兼容谷歌、ie等除火狐外
+        window.addEventListener('DOMMouseScroll',wheel);
+    }
+    // 兼容谷歌、ie等除火狐外
+    window.onmousewheel=wheel;
+    function wheel(ev){
+        var e=ev||window.event;
+        var limit=div[0].offsetHeight;
+        var delta=0;
+        if(e.wheelDelta){
+            // 判断谷歌、ie等除火狐外
+            delta=e.wheelDelta;
+        }
+        else if(e.detail){
+            // 判断谷歌、ie等除火狐外
+            delta=-e.detail;
+        }
+        if(delta<0){
+            var down=setInterval(function(){
+                scroll=document.documentElement.scrollTop||document.body.scrollTop;
+                console.log(scroll);
+                window.onmousewheel=null;
+                if(window.addEventListener){
+                    window.removeEventListener('DOMMouseScroll',wheel);
+                }
+                window.scrollBy(0,3);
+                if(scroll%limit<1){
+                    clearInterval(down);
+                    if(window.addEventListener){
+                        window.addEventListener('DOMMouseScroll',wheel);
+                    }
+                    window.onmousewheel=wheel;
+                }
+            },1);
+        }
+        else{
+            var up=setInterval(function(){
+                scroll=document.documentElement.scrollTop||document.body.scrollTop;
+                window.scrollBy(0,-3);
+                window.onmousewheel=null;
+                if(window.addEventListener){
+                    window.removeEventListener('DOMMouseScroll',wheel);
+                }
+                if(scroll%limit<1){
+                    clearInterval(up);
+                    if(window.addEventListener){
+                        window.addEventListener('DOMMouseScroll',wheel);
+                    }
+                    window.onmousewheel=wheel;
+                }
+            },1);
+        }
+    }
+</script>
+</body>
+</html>

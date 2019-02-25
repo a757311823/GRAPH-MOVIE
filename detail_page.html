@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>图解电影</title>
+		<link rel="icon" href="http://web.graphmovie.com/home/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="css/detail_page_css.css" />
+		<script src="https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js"></script>
+		<script src="js/1.8.3.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/ajax.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 头部导航条 -->
+		<div class="header_bg">
+			<div class="header">
+				<img src="img/logo.png">
+				<span id="m_name">图解电影</span>
+				<a href="">戳我投稿</a>
+			</div>
+		</div>
+		<!-- 整体区域 -->
+		<div class="content_bg">
+			<div class="content">
+				<button id="pre">《</button>
+				<button id="next">》</button>
+				<div id="show">
+				</div>
+				<p id="graph"></p>
+				<div id="page">
+					<p>
+						<span id="present_page"></span>/<span id="total_page"></span>页
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- 名字 -->
+		<script type="text/javascript">
+			var id=location.search.substring(location.search.indexOf("?")+1,);
+			// console.log(id);
+			var arrid=id.split("&")
+			// console.log(id.split("&"))
+			console.log(arrid[0].substring(arrid[0].indexOf("=")+1,))
+			console.log(arrid[1].substring(arrid[1].indexOf("=")+1,))
+		</script>
+		<!-- 伪数据 -->
+		<script type="text/javascript">
+			var Random = Mock.Random;
+			var movie_detail = Mock.mock({
+				'1|60-80': [{
+					// "id|+1":1,
+					"img": '@color',
+					"title": '@ctitle',
+					"words":'@cparagraph'
+				}]
+
+			})
+			// console.log(JSON.stringify(movie_detail, null, 4))
+			json_movie_detail = JSON.parse(JSON.stringify(movie_detail, null, 4));
+			// console.log(json_movie_detail)
+		</script>
+		<!-- 内容 -->
+		<script type="text/javascript">
+			var n=0;
+			window.onload=function(){
+				$("#m_name").text(id);
+				// console.log( json_movie_detail[1][0].img)
+				$("#show").css({"background-color":json_movie_detail[1][0].img}),
+				$("#show").text(json_movie_detail[1][0].title)
+				$("#graph").text(json_movie_detail[1][0].words)
+				$("#present_page").text(n+1)
+				$("#total_page").text(json_movie_detail[1].length)
+			}
+			$("#pre").click(function(){
+				if(n==0){
+					alert("当前已经是第一页了哦！")
+				}else{
+					n--;
+					// console.log( json_movie_detail[1][n].img)
+					$("#show").css({"background-color":json_movie_detail[1][n].img}),
+					$("#show").text(json_movie_detail[1][n].title)
+					$("#graph").text(json_movie_detail[1][n].words)
+					$("#present_page").text(n+1)
+					$("#total_page").text(json_movie_detail[1].length)
+				}
+			})
+			$("#next").click(function(){
+				if(n==json_movie_detail[1].length-1){
+					alert("当前是最后一页啦！")
+				}else{
+					n++;
+					$("#show").css({"background-color":json_movie_detail[1][n].img}),
+					$("#show").text(json_movie_detail[1][n].title)
+					$("#graph").text(json_movie_detail[1][n].words)
+					$("#present_page").text(n+1)
+					$("#total_page").text(json_movie_detail[1].length)
+				}
+			})
+		</script>
+		
+	</body>
+</html>
